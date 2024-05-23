@@ -22,7 +22,9 @@ source myenv/bin/activate
 pip3 install --upgrade -r requirements.txt
 ```
 
-## Start sever by gunicorn
+## Git clone repo and start sever by gunicorn
 ```bash
-gunicorn -c gunicorn_config.py  main:app
+git clone https://github.com/SKN443/image_embedding_flask_demo.git
+cd image_embedding_flask_demo
+gunicorn -c gunicorn_config.py main:app
 ```
