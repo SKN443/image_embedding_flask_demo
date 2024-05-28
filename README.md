@@ -19,12 +19,12 @@ source myenv/bin/activate
 
 ## Install flask and gunicorn
 ```bash
+git clone https://github.com/SKN443/image_embedding_flask_demo.git
+cd image_embedding_flask_demo
 pip3 install --upgrade -r requirements.txt
 ```
 
 ## Git clone repo and start sever by gunicorn
 ```bash
-git clone https://github.com/SKN443/image_embedding_flask_demo.git
-cd image_embedding_flask_demo
 gunicorn -c gunicorn_config.py main:app
 ```
