@@ -7,7 +7,7 @@ Database is hosted on firebase, each query image will be embedded into vector by
 ```bash
 sudo apt-get update
 sudo apt install git pip
-python3 -m pip install virtualenv
+sudo apt install python3.11-venv
 ```
 Above line is for Debian.
 
