@@ -3,7 +3,7 @@ from credential import db
 from PIL import Image
 import torch
 import json
-from model import embed, embed_t, create_pattern
+from model import embed, embed_t, create_pattern, embed_list
 import clip
 from google.cloud.firestore_v1.base_vector_query import DistanceMeasure
 from google.cloud.firestore_v1.vector import Vector
@@ -13,7 +13,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 
-@app.route('/search', methods=['POST', 'GET'])
+@app.route('/search', methods=['POST', 'GET', 'PUT'])
 def search():
     if request.method == 'POST':
         # Check if the request contains JSON data
@@ -79,4 +79,15 @@ def search():
         # print(result)
 
         return jsonify(result)
+
+    if request.method == 'PUT':
+         # Check if the request contains JSON data
+        if not request.is_json:
+            return jsonify({"error": "Request must be JSON"}), 400
+    
+        # Get the JSON data from the request
+        data = request.get_json()
+        result = {'embed': embed_list(data["image"])}
+        return jsonify(result)
+    
     return jsonify({})

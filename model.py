@@ -31,6 +31,15 @@ def embed(imgbase64):
     image_features = Vector(image_features)
     return image_features
 
+def embed_list(imgbase64):
+    image = fetch_image_from_base64(imgbase64)
+    if (image==None):
+        return Vector([0])
+    with torch.no_grad():
+        image_features = model.encode_image(image)
+    image_features = image_features.tolist()[0]
+    return image_features
+
 def embed_t(text):
     text = clip.tokenize(text).to(device)
     with torch.no_grad():
